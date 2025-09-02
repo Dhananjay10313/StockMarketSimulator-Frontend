@@ -1,0 +1,97 @@
+/* container */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  padding: 16px;
+  width: 720px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* header */
+.header { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.sub { color: #6b7280; font-size: 12px; font-weight: 600; }
+.total { font-size: 34px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; font-weight: 700; }
+.badge.up { background: #e8f7ee; color: #15803d; }
+.badge.down { background: #fde8e8; color: #b91c1c; }
+.openBtn { border: none; background: transparent; font-size: 18px; cursor: pointer; color: #64748b; }
+
+/* segmented bar */
+.segBar { display: flex; gap: 10px; height: 8px; border-radius: 6px; margin: 14px 0 10px; }
+.seg { height: 100%; border-radius: 6px; }
+
+/* chip scroller row */
+.chipRow { position: relative; }
+.chipsScroller {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;           /* horizontal scroll only */
+  padding: 2px;
+  scroll-snap-type: x mandatory; /* snap chips to edges for clean stops */
+  scroll-padding: 2px;
+}
+.hideScrollbar {
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge Legacy */
+}
+.hideScrollbar::-webkit-scrollbar { display: none; } /* Chrome/Safari/Edge */
+
+/* chips */
+.chip {
+  flex: 0 0 220px;            /* fixed basis so arrow scroll is consistent */
+  border: 1px solid #eef2f7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #fff;
+  scroll-snap-align: start;   /* align each chip at the start after scroll */
+}
+.chipTop { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.chipSwatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.chipName { font-weight: 700; color: #374151; }
+.chipSym { font-size: 12px; color: #6b7280; padding: 2px 6px; background: #f3f4f6; border-radius: 999px; }
+.chipBottom { display: flex; align-items: baseline; justify-content: space-between; }
+.chipVal { font-weight: 700; }
+.chipChg { font-weight: 700; font-size: 12px; }
+.chipChg.up { color: #16a34a; }
+.chipChg.down { color: #dc2626; }
+/* arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff, #f6f7fb);
+  color: #0f172a;                 /* icon color via currentColor */
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+  transition: box-shadow .2s ease, transform .2s ease, color .2s ease;
+}
+.arrow.left { left: -8px; }
+.arrow.right { right: -8px; }
+.arrow.hide { visibility: hidden; pointer-events: none; }
+
+.arrow:hover {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.22);
+  color: #111827;                 /* slightly darker icon on hover */
+}
+.arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+.arrow:focus-visible {
+  outline: 0;
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.35),  /* focus ring */
+    0 6px 16px rgba(15, 23, 42, 0.22);
+}
+
+/* Reduce motion for users who request it */
+@media (prefers-reduced-motion: reduce) {
+  .arrow { transition: none; }
+  .arrow:active { transform: translateY(-50%); }
+}

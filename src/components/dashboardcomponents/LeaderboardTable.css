@@ -1,0 +1,29 @@
+.card {
+  width: 820px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  padding: 12px;
+}
+
+/* fixed-height scroll area */
+.scrollWrap {
+  height: 420px;
+  overflow: auto;
+  border-radius: 8px;
+}
+
+/* Hide scrollbar but keep scrolling (cross‑browser) */
+.hideScrollbar {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge Legacy */
+}
+.hideScrollbar::-webkit-scrollbar { display: none; } /* Chrome/Safari/Edge */
+
+.tbl { width: 100%; border-collapse: collapse; }
+.thead { position: sticky; top: 0; background: #f8fafc; z-index: 1; }
+.th, .td { padding: 10px 12px; border-bottom: 1px solid #eef2f7; text-align: left; font-size: 14px; }
+.tr:hover { background: #f9fbff; }
+.sortable { cursor: pointer; user-select: none; }
+.thInner { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+.sortIcon { opacity: 0.6; font-size: 12px; }
