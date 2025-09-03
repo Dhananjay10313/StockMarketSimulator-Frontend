@@ -1,10 +1,20 @@
 .card {
-  width: 820px;
+  width: 1020px;
+  height: 600px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   padding: 12px;
 }
+
+/* LeaderboardTable.css */
+.tableTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px 0; /* space above the table */
+}
+
 
 /* fixed-height scroll area */
 .scrollWrap {

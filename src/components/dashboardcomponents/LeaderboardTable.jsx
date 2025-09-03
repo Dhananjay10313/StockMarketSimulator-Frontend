@@ -55,8 +55,12 @@ export default function LeaderboardTable({ data = [] }) {
     getSortedRowModel: getSortedRowModel(), // client-side sorting
   });
 
+  // LeaderboardTable.jsx (only the return block shown)
   return (
     <div className="card">
+      {/* New label */}
+      <h2 className="tableTitle">Leaderboard</h2>
+
       <div className="scrollWrap hideScrollbar">
         <table className="tbl">
           <thead className="thead">
@@ -70,13 +74,24 @@ export default function LeaderboardTable({ data = [] }) {
                       onClick={header.column.getToggleSortingHandler()}
                       className={`th ${header.column.getCanSort() ? "sortable" : ""}`}
                       aria-sort={
-                        sorted ? (sorted === "asc" ? "ascending" : "descending") : "none"
+                        sorted
+                          ? sorted === "asc"
+                            ? "ascending"
+                            : "descending"
+                          : "none"
                       }
                     >
                       <div className="thInner">
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                         <span className="sortIcon">
-                          {sorted === "asc" ? "▲" : sorted === "desc" ? "▼" : "↕"}
+                          {sorted === "asc"
+                            ? "▲"
+                            : sorted === "desc"
+                              ? "▼"
+                              : "↕"}
                         </span>
                       </div>
                     </th>

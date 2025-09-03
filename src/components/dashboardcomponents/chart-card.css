@@ -1,0 +1,16 @@
+/* chart-card.css */
+.chartCard {
+  border: 1px solid #e5e7eb;   /* solid border creates the card outline */
+  background: #ffffff;
+  /* Sharp edges: no rounding */
+  border-radius: 0;            /* explicit zero radius for crisp corners */
+  /* Optional layout */
+  width: 560px;
+}
+
+.chartCard.sharp { border-radius: 0; }
+
+.chartInner {
+  height: 220px;               /* match chart height */
+  padding: 12px;               /* inner spacing for title/grid */
+}

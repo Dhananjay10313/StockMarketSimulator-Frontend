@@ -6,6 +6,7 @@ import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { Outlet } from 'react-router';
 import { createTheme } from '@mui/material/styles';
 
+
 const NAVIGATION = [
   { kind: 'header', title: 'Main' },
   { segment: 'dashboard', title: 'Dashboard', icon: <DashboardIcon /> },

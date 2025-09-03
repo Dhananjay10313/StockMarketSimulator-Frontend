@@ -1,5 +1,6 @@
 // PortfolioCard.jsx (JSX)
 import React, { useMemo, useRef, useState, useEffect } from "react";
+import "./PortfolioCard.css"; // Ensure you have appropriate styles
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",

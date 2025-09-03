@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import AppLayout from './contexts/AppProvider.jsx';
-import DashboardPage from './pages/DashboardPage';
-import { useLocation } from 'react-router';
+import DashboardPage from './pages/dashboardpage/DashboardPage.jsx';
+import OrderPage from './pages/orderpage/OrderPage.jsx';
 // import OrdersPage from './pages/OrdersPage';
 
 const router = createBrowserRouter([
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <DashboardPage pathname={"/dashboard"}/>}, // default to /dashboard if preferred
       { path: 'dashboard', element: <DashboardPage pathname={"dasboa"}/> },
-      { path: 'orders', element: <DashboardPage pathname={"useLocation()"}/> }, // replace with <OrdersPage /> when ready
+      { path: 'orders', element: <OrderPage/> }, // replace with <OrdersPage /> when ready
     ],
   },
 ]);

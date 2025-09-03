@@ -1,0 +1,131 @@
+/* watchlist.css */
+
+.wl {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.wl-header {
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+/* Row */
+.wl-row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  outline: none;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 120ms ease;
+}
+
+.wl-row:last-child {
+  border-bottom: none;
+}
+
+.wl-row:hover {
+  background: #f9fafb;
+}
+
+/* Selected border (visible focus/selection ring) */
+.wl-row.is-selected {
+  box-shadow: inset 0 0 0 2px #111827;
+  border-radius: 6px;
+}
+
+/* Pin button */
+.wl-pin {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.wl-pin:hover {
+  color: #374151;
+  background: #f3f4f6;
+}
+
+/* Visibility rules: pinned always visible, unpinned only on hover/focus */
+.is-unpinned .wl-pin {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.wl-row.is-unpinned:hover .wl-pin,
+.wl-row.is-unpinned:focus-within .wl-pin {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.is-pinned .wl-pin {
+  opacity: 1;
+}
+
+/* Text layout */
+.wl-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.wl-line1,
+.wl-line2 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.wl-symbol {
+  font-weight: 600;
+  color: #111827;
+}
+
+.wl-name {
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wl-price {
+  font-variant-numeric: tabular-nums;
+  color: #111827;
+}
+
+.wl-chg {
+  font-variant-numeric: tabular-nums;
+}
+
+.wl-chg.is-up {
+  color: #059669;
+}
+
+.wl-chg.is-down {
+  color: #dc2626;
+}
