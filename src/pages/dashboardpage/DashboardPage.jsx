@@ -8,6 +8,7 @@ import LeaderboardTable from "../../components/dashboardcomponents/LeaderboardTa
 import PortfolioCard from "../../components/dashboardcomponents/PortfolioCard.jsx";
 import PortfolioLineChart from "../../components/dashboardcomponents/PortfoliolineChart.jsx";
 
+
 // --- sample data (keep your existing data) ---
 const data = [
   { symbol: "SPOT", name: "Spotify", price: 310.4, changePercent: -1.1 },

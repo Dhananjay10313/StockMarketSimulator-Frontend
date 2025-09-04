@@ -7,7 +7,7 @@ const currency = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export default function Watchlist({ items = [], height = 360, onSelect }) {
+export default function Watchlist({ items = [], onSelect }) {
   const [pinnedIds, setPinnedIds] = useState(() => new Set());
   const [selectedId, setSelectedId] = useState(null);
 
@@ -40,7 +40,7 @@ export default function Watchlist({ items = [], height = 360, onSelect }) {
   }, [items, pinnedIds]);
 
   return (
-    <div className="wl" style={{ height }}>
+    <div className="wl">
       <div className="wl-header" role="heading" aria-level={2}>
         Watchlist
       </div>

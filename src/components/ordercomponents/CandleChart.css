@@ -1,0 +1,65 @@
+.tv-wrap {
+  position: relative;
+  height: 100dvh;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.tv-chart {
+  position: relative;
+  flex: 1;
+  cursor: crosshair; /* cross cursor on hover */
+}
+
+/* Cursor-following price sticker on right axis */
+.cursor-sticker {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 2px 6px;
+  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #fff;
+  background: #111827;
+  border-radius: 2px 0 0 2px;
+  pointer-events: none;
+  display: none;
+}
+
+/* Bottom toolbar */
+.tv-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.tv-toolbar .ranges {
+  display: flex;
+  gap: 8px;
+}
+
+.tv-toolbar .nav {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.tv-toolbar .clock {
+  justify-self: end;
+  color: #374151;
+}
+
+.tv-toolbar button {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tv-toolbar button:hover { background: #f3f4f6; }
