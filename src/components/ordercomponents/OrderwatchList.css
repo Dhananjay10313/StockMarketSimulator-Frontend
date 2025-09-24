@@ -2,13 +2,13 @@
 
 .wl {
   display: flex;
-  width: 400px;
+  width: 500px;
   flex-direction: column;
   border: 1px solid #e5e7eb;
   border-radius: 0px;
   overflow: hidden;
   background: #fff;
-  height: 90.2dvh;  /* fallback for browsers that don't support 100dvh */
+  height: 100%;  /* fallback for browsers that don't support 100dvh */
 }
 
 .wl-header {

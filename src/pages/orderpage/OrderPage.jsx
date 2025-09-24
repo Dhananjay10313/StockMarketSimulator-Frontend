@@ -1,6 +1,7 @@
 import React from 'react'
 import OrderwatchList from '../../components/ordercomponents/OrderwatchList.jsx';
 import CandleChart from '../../components/ordercomponents/CandleChart.jsx';
+import ChartView from '../../components/ordercomponents/ChartView.jsx';
 
 // --- sample data (keep your existing data) ---
 
@@ -39,33 +40,7 @@ const SAMPLE_CANDLES = [
 // Usage:
 // series.setData(SAMPLE_CANDLES);
 
-function generateCandles({
-  count = 200,
-  startTime = Math.floor(Date.now() / 1000) - count * 1800,
-  intervalSec = 1800, // 30 minutes
-  startPrice = 2650,
-  volatility = 6,
-} = {}) {
-  const out = [];
-  let prevClose = startPrice;
-  for (let i = 0; i < count; i++) {
-    const time = startTime + i * intervalSec;
-    const drift = (Math.random() - 0.5) * volatility;
-    const open = prevClose;
-    const close = Math.max(1, open + drift);
-    const high = Math.max(open, close) + Math.random() * (volatility / 2);
-    const low = Math.min(open, close) - Math.random() * (volatility / 2);
-    out.push({
-      time,
-      open: +open.toFixed(2),
-      high: +high.toFixed(2),
-      low: +low.toFixed(2),
-      close: +close.toFixed(2),
-    });
-    prevClose = close;
-  }
-  return out;
-}
+
 
 // Example:
 // const data = generateCandles({ count: 500, startPrice: 2660 });
@@ -76,7 +51,16 @@ const OrderPage = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', height: '100vh' }}>
       <OrderwatchList items={data}/>
-      <CandleChart data={generateCandles({ count: 500, startPrice: 2660 })}/>
+      <ChartView
+      ChartComponent={CandleChart}
+      symbol="HINDUNILVR"
+      name="HINDUSTAN UNILEVER LTD."
+      price={2665.6}
+      currency="INR"
+      onBuy={() => console.log("Buy")}
+      onSell={() => console.log("Sell")}
+      onAlert={() => console.log("Open alert modal")}
+    />
     </div>
   )
 }

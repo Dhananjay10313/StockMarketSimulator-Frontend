@@ -1,6 +1,11 @@
 // CandleChart.jsx
 import React, { useEffect, useRef, useState } from "react";
-import { createChart, CrosshairMode, LineStyle, CandlestickSeries } from "lightweight-charts";
+import {
+  createChart,
+  CrosshairMode,
+  LineStyle,
+  CandlestickSeries,
+} from "lightweight-charts";
 import "./CandleChart.css";
 
 export default function CandleChart({ data }) {
@@ -16,16 +21,25 @@ export default function CandleChart({ data }) {
   useEffect(() => {
     const container = containerRef.current;
     const chart = createChart(containerRef.current, {
+      autoSize: true,
       layout: { background: { color: "#ffffff" }, textColor: "#111827" },
       rightPriceScale: { borderVisible: true },
       timeScale: { borderVisible: true, barSpacing: 8 },
-      grid: { vertLines: { color: "#f0f0f0" }, horzLines: { color: "#f0f0f0" } },
+      grid: {
+        vertLines: { color: "#f0f0f0" },
+        horzLines: { color: "#f0f0f0" },
+      },
       crosshair: {
         mode: CrosshairMode.Normal,
-        vertLine: { color: "rgba(0,0,0,0.35)", style: LineStyle.Dotted, width: 1 },
+        vertLine: {
+          color: "rgba(0,0,0,0.35)",
+          style: LineStyle.Dotted,
+          width: 1,
+        },
         horzLine: { color: "rgba(0,0,0,0.35)", style: LineStyle.Dotted },
       },
     });
+    chartRef.current = chart;
 
     const series = chart.addSeries(CandlestickSeries, {
       upColor: "#059669",
@@ -83,7 +97,10 @@ export default function CandleChart({ data }) {
 
     // Resize handler
     const ro = new ResizeObserver(() => {
-      chart.applyOptions({ width: container.clientWidth, height: container.clientHeight });
+      chart.applyOptions({
+        width: container.clientWidth,
+        height: container.clientHeight,
+      });
     });
     ro.observe(container);
 
@@ -100,9 +117,15 @@ export default function CandleChart({ data }) {
     setBarSpacing(next);
     chartRef.current?.timeScale().applyOptions({ barSpacing: next });
   };
+
+  // PAN: move viewport by N bars (positive = left/older, negative = right/newer)
   const move = (bars) => {
-    chartRef.current?.timeScale().scrollBy(bars);
+    const ts = chartRef.current?.timeScale();
+    if (!ts) return;
+    const cur = ts.scrollPosition(); // current distance from right edge, in bars
+    ts.scrollToPosition(cur + bars, true); // animate to the new position
   };
+
   const fit = () => {
     chartRef.current?.timeScale().fitContent();
   };
@@ -125,6 +148,8 @@ export default function CandleChart({ data }) {
 
   return (
     <div className="tv-wrap">
+      <div>
+      </div>
       <div ref={containerRef} className="tv-chart" />
       <div className="tv-toolbar">
         <div className="ranges">
@@ -133,11 +158,21 @@ export default function CandleChart({ data }) {
           <button onClick={() => onRange("1M")}>1M</button>
         </div>
         <div className="nav">
-          <button onClick={() => move(-50)} title="Left">⟵</button>
-          <button onClick={() => zoom(1)} title="Zoom in">＋</button>
-          <button onClick={() => zoom(-1)} title="Zoom out">－</button>
-          <button onClick={() => move(50)} title="Right">⟶</button>
-          <button onClick={fit} title="Fit">Fit</button>
+          <button onClick={() => move(-50)} title="Left">
+            ⟵
+          </button>
+          <button onClick={() => zoom(1)} title="Zoom in">
+            ＋
+          </button>
+          <button onClick={() => zoom(-1)} title="Zoom out">
+            －
+          </button>
+          <button onClick={() => move(50)} title="Right">
+            ⟶
+          </button>
+          <button onClick={fit} title="Fit">
+            Fit
+          </button>
         </div>
         <div className="clock">{now.toLocaleString()}</div>
       </div>

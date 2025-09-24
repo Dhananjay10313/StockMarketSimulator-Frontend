@@ -1,17 +1,44 @@
+/* CandleChart.css */
 .tv-wrap {
   position: relative;
-  height: 100dvh;
+  width: 100%;            /* was 800px */
+  height: 100%;         /* or any explicit px/rem you want */
   background: #fff;
   border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
 }
+/* NEW: Title bar */
+.tv-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* left text + optional right slot */
+  gap: 12px;
+  padding: 8px 12px;
+  background: #fafafa;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tv-title__text {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Chart area stays flexible and fills remaining height */
+.tv-chart {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;            /* critical for flex layouts */
+  cursor: crosshair;
+}
 
 .tv-chart {
   position: relative;
-  flex: 1;
-  cursor: crosshair; /* cross cursor on hover */
+  flex: 1 1 auto;
+  min-height: 0;          /* critical for flex children */
+  cursor: crosshair;
 }
+
 
 /* Cursor-following price sticker on right axis */
 .cursor-sticker {

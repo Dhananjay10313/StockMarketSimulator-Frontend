@@ -1,0 +1,95 @@
+/* Container */
+.cv-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* Navbar */
+.cv-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* title left, actions right */
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.cv-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: #111827;
+}
+
+.cv-name { font-weight: 600; }
+.cv-symbol { color: #6b7280; font-size: 12px; }
+
+.cv-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                /* icon + text */
+  padding: 6px 10px;
+  color: #374151;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.cv-alert:hover { background: #f3f4f6; }
+.cv-alert-text { font-weight: 600; }
+
+/* Middle content */
+.cv-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.cv-chart {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Bottom trade bar */
+.cv-tradebar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* everything to the right edge */
+  padding: 10px 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.cv-tradebar-right {
+  display: flex;
+  gap: 10px;               /* space between Buy/Sell */
+}
+
+.cv-btn {
+  width: 200px;            /* fixed width per request */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.cv-btn--sell { background: #dc2626; }  /* red */
+.cv-btn--sell:hover { filter: brightness(0.95); }
+
+.cv-btn--buy { background: #059669; }   /* green */
+.cv-btn--buy:hover { filter: brightness(0.95); }
+
+.cv-btn-price { font-variant-numeric: tabular-nums; }
