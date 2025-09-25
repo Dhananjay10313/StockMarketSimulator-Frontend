@@ -1,7 +1,9 @@
 // ChartView.jsx
-import React from "react";
+import React, { use, useEffect } from "react";
 import "./ChartView.css";
 import CandleChart from "./CandleChart.jsx";
+import ChartComponent from "./CandleChart.jsx"; // default chart component
+import { useAppContext } from "../../contexts/OrderContext.jsx";
 
 // Inline SVG for an alert/bell icon (Bootstrap Icons bell), inherits currentColor
 // Source path adapted from Bootstrap Icons "bell" for inline usage.
@@ -52,19 +54,21 @@ function generateCandles({
 // - currency: ISO code, e.g., "INR" | "USD"
 // - onBuy, onSell, onAlert: action callbacks
 export default function ChartView({
-  ChartComponent,
-  symbol = "HINDUNILVR",
-  name = "HINDUSTAN UNILEVER LTD.",
-  price = 2665.6,
-  currency = "INR",
   onBuy,
   onSell,
   onAlert,
 }) {
+  const { stock } = useAppContext();
+  const { name, symbol, price, id} = stock || {};
+  const currency = "INR"; // hardcoded for now; could be a prop
   const fmt = new Intl.NumberFormat(currency === "INR" ? "en-IN" : "en-US", {
     style: "currency",
     currency,
   });
+
+    useEffect(() => {
+      console.log("Selected stock changed:", stock);
+    }, [id]);
 
   return (
     <div className="cv-wrap">

@@ -1,17 +1,34 @@
 // Watchlist.jsx
 import React, { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import "./OrderwatchList.css";
+import { useAppContext } from "../../contexts/OrderContext.jsx";
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
 
-export default function Watchlist({ items = [], onSelect }) {
+export default function Watchlist() {
   const [pinnedIds, setPinnedIds] = useState(() => new Set());
   const [selectedId, setSelectedId] = useState(null);
+  const { setStock } = useAppContext();
 
   const isPinned = (id) => pinnedIds.has(id);
+
+  const stocksById = useSelector((state) => state.stocks.byId);
+  const pricesById = useSelector((state) => state.stockPrices.byId);
+
+  const items = useMemo(() => {
+    const cores = Object.values(stocksById || {});
+    return cores.map((stock) => ({
+      id: stock.stockId,
+      name: stock.name,
+      symbol: stock.symbol,
+      changePct: stock.changePct,
+      price: pricesById?.[stock.stockId] ?? null,
+    }));
+  }, [stocksById, pricesById]);
 
   const togglePin = (id) => {
     setPinnedIds((prev) => {
@@ -24,7 +41,10 @@ export default function Watchlist({ items = [], onSelect }) {
 
   const handleSelect = (id) => {
     setSelectedId(id);
-    if (onSelect) onSelect(id);
+    // if (onSelect) onSelect(id);
+    const stock = stocksById[id];
+    const price = pricesById?.[id] ?? null; // get price or null
+    setStock({name: stock?.name, symbol: stock?.symbol, id: stock?.stockId, price: price});
   };
 
   // Pinned first, keep original order within groups

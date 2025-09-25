@@ -1,43 +1,13 @@
-// src/store.ts
+// src/store.jsx
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialStocksState = {
   byId: {
-    AAPL: {
-      stockId: 'AAPL',
-      name: 'Apple Inc.',
-      symbol: 'AAPL',
-      movementValue: 0.0,
-      movementDirection: 'flat',
-    },
-    MSFT: {
-      stockId: 'MSFT',
-      name: 'Microsoft Corp.',
-      symbol: 'MSFT',
-      movementValue: 0.0,
-      movementDirection: 'flat',
-    },
-    GOOGL: {
-      stockId: 'GOOGL',
-      name: 'Alphabet Inc.',
-      symbol: 'GOOGL',
-      movementValue: 0.0,
-      movementDirection: 'flat',
-    },
-    AMZN: {
-      stockId: 'AMZN',
-      name: 'Amazon.com Inc.',
-      symbol: 'AMZN',
-      movementValue: 0.0,
-      movementDirection: 'flat',
-    },
-    TSLA: {
-      stockId: 'TSLA',
-      name: 'Tesla Inc.',
-      symbol: 'TSLA',
-      movementValue: 0.0,
-      movementDirection: 'flat',
-    },
+    AAPL: { stockId: 'AAPL', name: 'Apple Inc.', symbol: 'AAPL', changePct: 0.0 },
+    MSFT: { stockId: 'MSFT', name: 'Microsoft Corp.', symbol: 'MSFT', changePct: 0.013 },
+    GOOGL:{ stockId: 'GOOGL', name: 'Alphabet Inc.', symbol: 'GOOGL', changePct: -0.004 },
+    AMZN: { stockId: 'AMZN', name: 'Amazon.com Inc.', symbol: 'AMZN', changePct: 0.013 },
+    TSLA: { stockId: 'TSLA', name: 'Tesla Inc.', symbol: 'TSLA', changePct: -0.004 },
   },
 };
 
@@ -51,11 +21,14 @@ const initialPricesState = {
   },
 };
 
-
 const stocksSlice = createSlice({
   name: 'stocks',
   initialState: initialStocksState,
   reducers: {
+    // Replace the entire stocks slice with a new value
+    initializeStocks(_state, action) {
+      return action.payload; // expected shape: { byId: { [stockId]: { stockId, name, symbol, changePct } } }
+    },
     // Add or replace a stock's core data
     upsertStock(state, action) {
       state.byId[action.payload.stockId] = action.payload;
@@ -67,14 +40,10 @@ const stocksSlice = createSlice({
       }
     },
     // Update only movement fields for a given stock
-    updateMovement(
-      state,
-      action
-    ) {
+    updateMovement(state, action) {
       const s = state.byId[action.payload.stockId];
       if (s) {
-        s.movementValue = action.payload.movementValue;
-        s.movementDirection = action.payload.movementDirection;
+        s.changePct = action.payload.changePct;
       }
     },
     // Remove a stock entirely
@@ -88,11 +57,14 @@ const stocksSlice = createSlice({
   },
 });
 
-
 const stockPricesSlice = createSlice({
   name: 'stockPrices',
   initialState: initialPricesState,
   reducers: {
+    // Replace the entire prices slice with a new value
+    initializeStockPrices(_state, action) {
+      return action.payload; // expected shape: { byId: { [stockId]: priceNumber } }
+    },
     setPrice(state, action) {
       state.byId[action.payload.stockId] = action.payload.price;
     },
@@ -109,6 +81,7 @@ const stockPricesSlice = createSlice({
 });
 
 export const {
+  initializeStocks,
   upsertStock,
   upsertManyStocks,
   updateMovement,
@@ -116,8 +89,13 @@ export const {
   clearStocks,
 } = stocksSlice.actions;
 
-export const { setPrice, setPrices, removePrice, clearPrices } =
-  stockPricesSlice.actions;
+export const {
+  initializeStockPrices,
+  setPrice,
+  setPrices,
+  removePrice,
+  clearPrices,
+} = stockPricesSlice.actions;
 
 export const store = configureStore({
   reducer: {
@@ -126,13 +104,9 @@ export const store = configureStore({
   },
 });
 
-
-export const selectStockById = (state, stockId) =>
-  state.stocks.byId[stockId];
-
-export const selectPriceById = (state, stockId) =>
-  state.stockPrices.byId[stockId];
-
+// Selectors
+export const selectStockById = (state, stockId) => state.stocks.byId[stockId];
+export const selectPriceById = (state, stockId) => state.stockPrices.byId[stockId];
 export const selectStockWithPriceById = (state, stockId) => {
   const core = state.stocks.byId[stockId];
   if (!core) return null;
