@@ -1,9 +1,11 @@
 // ChartView.jsx
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import "./ChartView.css";
 import CandleChart from "./CandleChart.jsx";
 import ChartComponent from "./CandleChart.jsx"; // default chart component
 import { useAppContext } from "../../contexts/OrderContext.jsx";
+import AlertModal from "./AlertModal.jsx";
+import OrderForm from "./OrderForm.jsx";
 
 // Inline SVG for an alert/bell icon (Bootstrap Icons bell), inherits currentColor
 // Source path adapted from Bootstrap Icons "bell" for inline usage.
@@ -53,32 +55,70 @@ function generateCandles({
 // - price: current price to show on Buy/Sell buttons
 // - currency: ISO code, e.g., "INR" | "USD"
 // - onBuy, onSell, onAlert: action callbacks
-export default function ChartView({
-  onBuy,
-  onSell,
-  onAlert,
-}) {
+export default function ChartView({ onAlert }) {
   const { stock } = useAppContext();
-  const { name, symbol, price, id} = stock || {};
+  const { name, symbol, price, id } = stock || {};
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [orderFromOpen, setOrderFormOpen] = useState(false);
+  const [side, setSide] = useState("buy");
   const currency = "INR"; // hardcoded for now; could be a prop
   const fmt = new Intl.NumberFormat(currency === "INR" ? "en-IN" : "en-US", {
     style: "currency",
     currency,
   });
 
-    useEffect(() => {
-      console.log("Selected stock changed:", stock);
-    }, [id]);
+  useEffect(() => {
+    console.log("Selected stock changed:", stock);
+  }, [id]);
+
+  const onOrderClick = () => {
+    console.log("Order clicked");
+    if (!id) {
+      alert("Please select a stock from the watchlist first.");
+      return;
+    }
+    setOrderFormOpen(true);
+  };
 
   return (
     <div className="cv-wrap">
       {/* Navbar */}
+      <OrderForm
+        open={orderFromOpen}
+        symbol={symbol}
+        side={side}
+        setSide={setSide}
+        name={name}
+        lastPrice={price}
+        currency={currency}
+        onSubmit={onOrderClick}
+        onClose={() => setOrderFormOpen(false)}
+      />
+
+      <AlertModal
+        symbol={symbol}
+        name={name}
+        lastPrice={price}
+        currency={currency}
+        onSubmit={onAlert}
+        open={alertOpen}
+        onClose={() => setAlertOpen(false)}
+      />
+
       <div className="cv-nav">
         <div className="cv-title">
           <span className="cv-name">{name}</span>
           <span className="cv-symbol">· {symbol}</span>
         </div>
-        <button className="cv-alert" type="button" onClick={onAlert}>
+        <button
+          className="cv-alert"
+          type="button"
+          onClick={() => {
+            setAlertOpen(true);
+            console.log("here");
+          }}
+          aria-label="Add price alert"
+        >
           <BellIcon />
           <span className="cv-alert-text">Add alert</span>
         </button>
@@ -107,7 +147,10 @@ export default function ChartView({
           <button
             className="cv-btn cv-btn--sell"
             type="button"
-            onClick={onSell}
+            onClick={() => {
+              onOrderClick();
+              setSide("sell");
+            }}
             aria-label={`Sell at ${fmt.format(price)}`}
           >
             <span className="cv-btn-label">SELL</span>
@@ -116,7 +159,10 @@ export default function ChartView({
           <button
             className="cv-btn cv-btn--buy"
             type="button"
-            onClick={onBuy}
+            onClick={() => {
+              onOrderClick();
+              setSide("buy");
+            }}
             aria-label={`Buy at ${fmt.format(price)}`}
           >
             <span className="cv-btn-label">BUY</span>

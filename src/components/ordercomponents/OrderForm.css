@@ -1,0 +1,141 @@
+/* OrderModal.css */
+.order-dialog {
+  border: none;
+  padding: 0;
+  max-width: 480px;
+  width: 95vw;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.order-dialog::backdrop {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(2px);
+}
+
+.order-form { display: flex; flex-direction: column; }
+
+/* Header */
+.order-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 16px 20px; background: #fafafa; border-bottom: 1px solid #e5e7eb;
+  border-radius: 12px 12px 0 0;
+}
+
+.order-title { display: flex; flex-direction: column; gap: 2px; }
+.order-symbol { font-weight: 700; font-size: 16px; color: #111827; }
+.order-name { font-size: 12px; color: #6b7280; }
+.order-price { font-size: 13px; color: #059669; font-weight: 600; }
+
+.order-close {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid #d1d5db; background: #fff; cursor: pointer;
+  font-size: 20px; line-height: 1; padding: 0;
+}
+.order-close:hover { background: #f3f4f6; }
+
+/* Body */
+.order-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+.order-info {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;
+}
+.info-icon { color: #2563eb; font-weight: bold; font-size: 14px; }
+.info-text { font-size: 12px; color: #1e40af; line-height: 1.4; }
+
+.field-group { display: flex; flex-direction: column; gap: 8px; }
+.field-label { font-size: 12px; font-weight: 600; color: #374151; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Order Type Tabs */
+.order-type-tabs { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid #d1d5db; }
+.order-tab {
+  flex: 1; padding: 10px; border: none; background: #fff; cursor: pointer;
+  font-weight: 600; font-size: 12px; color: #6b7280;
+  border-right: 1px solid #d1d5db;
+}
+.order-tab:last-child { border-right: none; }
+.order-tab:hover { background: #f9fafb; }
+.order-tab.active { background: #059669; color: white; }
+
+/* Buy/Sell Toggle */
+.side-toggle { display: flex; gap: 8px; }
+.side-btn {
+  flex: 1; padding: 12px; border-radius: 8px; border: 2px solid;
+  font-weight: 700; cursor: pointer; font-size: 14px;
+}
+.side-btn.buy { border-color: #059669; background: #fff; color: #059669; }
+.side-btn.buy.active { background: #059669; color: white; }
+.side-btn.sell { border-color: #dc2626; background: #fff; color: #dc2626; }
+.side-btn.sell.active { background: #dc2626; color: white; }
+
+/* Input Fields */
+.field-input {
+  padding: 12px; border: 1px solid #d1d5db; border-radius: 8px;
+  font-size: 14px; background: #fff;
+}
+.field-input:disabled { background: #f9fafb; color: #6b7280; }
+.field-input:focus { outline: 2px solid #059669; border-color: #059669; }
+
+.price-input-wrapper { display: flex; flex-direction: column; gap: 6px; }
+
+/* GTT Condition Select */
+.gtt-condition { position: relative; }
+.gtt-select {
+  width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;
+  background: #fff; font-size: 12px; cursor: pointer;
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 8px center; background-repeat: no-repeat; background-size: 16px;
+  padding-right: 32px;
+}
+
+/* Order Summary */
+.order-summary {
+  background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px;
+}
+.summary-title { font-weight: 600; margin-bottom: 12px; color: #111827; }
+.summary-row {
+  display: flex; justify-content: space-between; padding: 4px 0;
+  font-size: 13px; color: #374151;
+}
+.summary-row.total {
+  border-top: 1px solid #d1d5db; margin-top: 8px; padding-top: 8px;
+  font-weight: 600; font-size: 14px;
+}
+.cost { color: #dc2626; }
+.proceeds { color: #059669; }
+
+/* Footer */
+.order-footer {
+  display: flex; gap: 12px; padding: 16px 20px;
+  background: #fafafa; border-top: 1px solid #e5e7eb;
+  border-radius: 0 0 12px 12px;
+}
+.btn { flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn.secondary { border: 1px solid #d1d5db; background: #fff; color: #374151; }
+.btn.primary { border: none; color: white; }
+.btn.primary.buy { background: #059669; }
+.btn.primary.sell { background: #dc2626; }
+.btn:hover { filter: brightness(0.95); }
+.charges-section {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.charges-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.summary-row.small {
+  font-size: 12px;
+  padding: 2px 0;
+}

@@ -1,0 +1,64 @@
+/* AlertModal.css */
+.alert-dialog {
+  border: none;
+  padding: 0;
+  max-width: 440px;
+  width: 90vw;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.alert-dialog::backdrop {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(1px);
+}
+
+.alert-form { display: flex; flex-direction: column; }
+
+.alert-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-bottom: 1px solid #e5e7eb; background: #fafafa;
+}
+
+.alert-title { display: flex; flex-direction: column; gap: 2px; }
+.alert-name { font-weight: 600; color: #111827; }
+.alert-meta { font-size: 12px; color: #6b7280; }
+
+.alert-close {
+  display: flex;                  /* Use flexbox for perfect centering */
+  align-items: center;            /* Center vertically */
+  justify-content: center;        /* Center horizontally */
+  border: 1px solid #d1d5db; 
+  background: #fff; 
+  width: 28px; 
+  height: 28px;
+  border-radius: 6px; 
+  cursor: pointer;
+  font-size: 18px;               /* Adjust × symbol size if needed */
+  line-height: 1;                /* Remove line-height spacing */
+  padding: 0;                    /* Remove default padding */
+}
+.alert-close:hover { background: #f3f4f6; }
+
+.alert-grid {
+  display: grid; gap: 12px; padding: 14px;
+  grid-template-columns: 1fr 1fr;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field.checkbox { flex-direction: row; align-items: center; gap: 8px; }
+
+.label { font-size: 12px; color: #6b7280; }
+input[type="number"], input[type="text"], input[type="datetime-local"], select {
+  border: 1px solid #d1d5db; border-radius: 6px; padding: 8px 10px;
+}
+input:focus, select:focus { outline: 2px solid #11182722; border-color: #9ca3af; }
+
+.alert-actions {
+  display: flex; justify-content: flex-end; gap: 10px;
+  padding: 12px 14px; border-top: 1px solid #e5e7eb; background: #fafafa;
+}
+.btn { border-radius: 6px; padding: 8px 12px; cursor: pointer; border: 1px solid transparent; }
+.btn.ghost { background: #fff; border-color: #d1d5db; }
+.btn.primary { background: #059669; color: #fff; }
+.btn.ghost:hover { background: #f3f4f6; }
+.btn.primary:hover { filter: brightness(0.95); }
