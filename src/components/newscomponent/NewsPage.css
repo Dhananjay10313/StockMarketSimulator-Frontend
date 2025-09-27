@@ -1,0 +1,587 @@
+/* NewsPage.css */
+.news-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 2rem 1rem;
+}
+
+.news-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+.news-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.news-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.news-subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* News Grid */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* News Card */
+.news-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Image */
+.news-card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.news-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-card-image img {
+  transform: scale(1.05);
+}
+
+.news-category {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(59, 130, 246, 0.9);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Card Content */
+.news-card-content {
+  padding: 1.5rem;
+}
+
+.news-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-card-description {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card Footer */
+.news-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.news-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.company-name {
+  font-weight: 500;
+  color: #3b82f6;
+  font-size: 0.875rem;
+}
+
+.publish-date {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.read-more {
+  color: #3b82f6;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.news-card:hover .read-more {
+  color: #1d4ed8;
+}
+
+/* No News State */
+.no-news {
+  text-align: center;
+  padding: 3rem;
+  color: #64748b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .news-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .news-title {
+    font-size: 2rem;
+  }
+  
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .news-card-content {
+    padding: 1.25rem;
+  }
+  
+  .news-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-header {
+    margin-bottom: 2rem;
+  }
+  
+  .news-title {
+    font-size: 1.75rem;
+  }
+  
+  .news-subtitle {
+    font-size: 1rem;
+  }
+  
+  .news-grid {
+    gap: 1rem;
+  }
+}
+
+/* Add to existing NewsPage.css */
+
+/* News Stats */
+.news-stats {
+  margin-top: 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Pagination Container */
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+/* Pagination Component */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+/* Pagination Buttons */
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(.disabled) {
+  background: #f8fafc;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.pagination-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f8fafc;
+}
+
+.pagination-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.pagination-btn:hover:not(.disabled) svg {
+  transform: translateX(2px);
+}
+
+.prev-btn:hover:not(.disabled) svg {
+  transform: translateX(-2px);
+}
+
+/* Pagination Numbers */
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0 1rem;
+}
+
+.pagination-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pagination-number:hover {
+  background: #f8fafc;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.pagination-number.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.pagination-number.active:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Pagination Ellipsis */
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #94a3b8;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Pagination Info */
+.pagination-info {
+  color: #64748b;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .pagination-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .pagination-btn span {
+    display: none;
+  }
+  
+  .pagination-numbers {
+    margin: 0 0.5rem;
+    gap: 0.25rem;
+  }
+  
+  .pagination-number {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-container {
+    margin-top: 2rem;
+  }
+  
+  .pagination {
+    padding: 0.75rem;
+  }
+  
+  .pagination-numbers {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 200px;
+  }
+  
+  .pagination-btn {
+    flex: 1;
+    min-width: 80px;
+    justify-content: center;
+  }
+}
+/* Add to existing NewsPage.css */
+
+/* News Stats */
+.news-stats {
+  margin-top: 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Pagination Container */
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+/* Pagination Component */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+/* Pagination Buttons */
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(.disabled) {
+  background: #f8fafc;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.pagination-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f8fafc;
+}
+
+.pagination-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.pagination-btn:hover:not(.disabled) svg {
+  transform: translateX(2px);
+}
+
+.prev-btn:hover:not(.disabled) svg {
+  transform: translateX(-2px);
+}
+
+/* Pagination Numbers */
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0 1rem;
+}
+
+.pagination-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pagination-number:hover {
+  background: #f8fafc;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.pagination-number.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.pagination-number.active:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Pagination Ellipsis */
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #94a3b8;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Pagination Info */
+.pagination-info {
+  color: #64748b;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .pagination-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .pagination-btn span {
+    display: none;
+  }
+  
+  .pagination-numbers {
+    margin: 0 0.5rem;
+    gap: 0.25rem;
+  }
+  
+  .pagination-number {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-container {
+    margin-top: 2rem;
+  }
+  
+  .pagination {
+    padding: 0.75rem;
+  }
+  
+  .pagination-numbers {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 200px;
+  }
+  
+  .pagination-btn {
+    flex: 1;
+    min-width: 80px;
+    justify-content: center;
+  }
+}

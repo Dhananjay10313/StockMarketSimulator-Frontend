@@ -1,5 +1,5 @@
 // ChartView.jsx
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useState, useMemo } from "react";
 import "./ChartView.css";
 import CandleChart from "./CandleChart.jsx";
 import ChartComponent from "./CandleChart.jsx"; // default chart component
@@ -80,6 +80,10 @@ export default function ChartView({ onAlert }) {
     setOrderFormOpen(true);
   };
 
+  const generateCandlesData = useMemo(() => {
+    return generateCandles({ count: 500, startPrice: price || 2660 });
+  }, [price]);
+
   return (
     <div className="cv-wrap">
       {/* Navbar */}
@@ -131,7 +135,7 @@ export default function ChartView({ onAlert }) {
         {ChartComponent ? (
           <div className="cv-chart">
             <ChartComponent
-              data={generateCandles({ count: 500, startPrice: 2660 })}
+              data={generateCandlesData}
             />
           </div>
         ) : (
