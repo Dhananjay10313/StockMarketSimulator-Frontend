@@ -1,10 +1,14 @@
 // ArticleDetailPage.jsx
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import './ArticleDetailPage.css';
 
 const ArticleDetailPage = () => {
-  const { id } = useParams();
+  const location = useLocation();
+  console.log("Current location:", location);
+  const val = useParams();
+  const id = val.id;
+  console.log("Article ID from params:", val);
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);

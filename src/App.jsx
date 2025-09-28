@@ -4,6 +4,7 @@ import DashboardPage from "./pages/dashboardpage/DashboardPage.jsx";
 import OrderPage from "./pages/orderpage/OrderPage.jsx";
 import NewsPage from "./components/newscomponent/News.jsx";
 import HistoryPage from "./pages/historypage/HistoryPage.jsx";
+import ArticleDetailPage from "./components/newscomponent/ArticleDetailPage.jsx";
 // import OrdersPage from './pages/OrdersPage';
 
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "orders", element: <OrderPage /> },
       { path: "history", element: <HistoryPage /> },
       { path: "news", element: <NewsPage /> },
+      { path: "news/:id", element: <ArticleDetailPage /> },
     ],
   },
 ]);

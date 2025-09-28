@@ -1,20 +1,26 @@
 // Watchlist.jsx
 import React, { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import "./OrderwatchList.css";
 import { useAppContext } from "../../contexts/OrderContext.jsx";
+import { togglePin as togglePinStore, selectPinnedIds } from '../../store/store.jsx';
+
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
-  currency: "USD",
+  currency: "inr",
 });
 
 export default function Watchlist() {
-  const [pinnedIds, setPinnedIds] = useState(() => new Set());
+  const pinnedIds = useSelector(selectPinnedIds);
+  const dispatch = useDispatch();
+  const pinnedIdsSet = useMemo(() => new Set(pinnedIds), [pinnedIds]);  
+
   const [selectedId, setSelectedId] = useState(null);
   const { setStock } = useAppContext();
 
-  const isPinned = (id) => pinnedIds.has(id);
+  const isPinned = id => pinnedIdsSet.has(id);
+
 
   const stocksById = useSelector((state) => state.stocks.byId);
   const pricesById = useSelector((state) => state.stockPrices.byId);
@@ -31,12 +37,8 @@ export default function Watchlist() {
   }, [stocksById, pricesById]);
 
   const togglePin = (id) => {
-    setPinnedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+    // console.log('Toggled pin for', pinnedIds);
+    dispatch(togglePinStore(id));
   };
 
   const handleSelect = (id) => {
@@ -57,7 +59,7 @@ export default function Watchlist() {
       return a.__i - b.__i; // stable order inside group
     });
     return withIndex;
-  }, [items, pinnedIds]);
+  }, [items, pinnedIdsSet]);
 
   return (
     <div className="wl">

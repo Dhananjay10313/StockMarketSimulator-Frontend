@@ -13,7 +13,7 @@ const NAVIGATION = [
   { segment: "dashboard", title: "Dashboard", icon: <DashboardIcon /> },
   { segment: "orders", title: "Orders", icon: <ShoppingCartIcon /> },
   { segment: "news", title: "News", icon: <Article /> },
-  { segment: "history", title: "history", icon: <ShoppingCartIcon /> },
+  { segment: "history", title: "history", icon: <HistoryIcon /> },
 ];
 
 const BRANDING = {

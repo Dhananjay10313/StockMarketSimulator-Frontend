@@ -7,6 +7,7 @@ const NewsPage = () => {
   const [newsArticles, setNewsArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
   
   // Pagination settings
   const articlesPerPage = 6;
@@ -186,7 +187,8 @@ const NewsPage = () => {
   const handleCardClick = (newsId) => {
     // Navigate to individual news page - replace with your routing logic
     console.log(`Navigating to news article ${newsId}`);
-    // Example: navigate(`/news/${newsId}`);
+    // Example: 
+    navigate(`/news/${newsId}`);
   };
 
   const formatDate = (dateString) => {

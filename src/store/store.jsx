@@ -80,6 +80,31 @@ const stockPricesSlice = createSlice({
   },
 });
 
+const initialState = {
+  pinnedIds: [],
+};
+
+const watchlistSlice = createSlice({
+  name: 'watchlist',
+  initialState,
+  reducers: {
+    togglePin: (state, action) => {
+      const id = action.payload;
+      const isPinned = state.pinnedIds.includes(id);
+      if (isPinned) {
+        state.pinnedIds = state.pinnedIds.filter(pinnedId => pinnedId !== id);
+      } else {
+        state.pinnedIds.push(id);
+      }
+    },
+  },
+});
+
+export const { togglePin } = watchlistSlice.actions;
+
+export const selectPinnedIds = state => state.watchlist.pinnedIds;
+
+
 export const {
   initializeStocks,
   upsertStock,
@@ -101,6 +126,7 @@ export const store = configureStore({
   reducer: {
     stocks: stocksSlice.reducer,
     stockPrices: stockPricesSlice.reducer,
+    watchlist: watchlistSlice.reducer,
   },
 });
 

@@ -16,7 +16,7 @@ export default function CandleChart({ data }) {
   const latestPriceLineRef = useRef(null);
   const [barSpacing, setBarSpacing] = useState(8);
 
-  console.log("CandleChart data:", data);
+  // console.log("CandleChart data:", data);
 
   useEffect(() => {
     const container = containerRef.current;
